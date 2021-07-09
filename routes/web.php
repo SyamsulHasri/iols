@@ -17,10 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('referral')->group(function () {
+    Route::get('/{refer_id}', function () {
+        return view('welcome');
+    });
+});
 
 Route::get('login', function () {
     return view('auth.login');
 });
+
+
 
 Route::prefix('system')->group(function () {
     Route::get('/dashboard', function () {
