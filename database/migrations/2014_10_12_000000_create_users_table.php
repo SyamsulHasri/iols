@@ -20,12 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('sponsor_id'); //direct sponsor id
             $table->string('leader_id'); //leader id distributor lvl 0
             $table->string('level');
-            $table->string('member_level');
+            $table->string('member_type');
             $table->string('email')->unique();
+            $table->string('phone_no');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('first_purchase')->default(0);
+            $table->boolean('first_purchase')->default(0);
             $table->string('first_purchase_amount');
+            $table->boolean('user_status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

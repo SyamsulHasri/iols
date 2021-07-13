@@ -15,7 +15,7 @@ class CreateEwalletTable extends Migration
     {
         Schema::create('ewallet', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('user_id')->constrained('users');
             $table->decimal('amount', $precision = 8, $scale = 2)->default(0.00);
             $table->timestamps();
         });

@@ -1,5 +1,5 @@
 <!-- footer -->
-<div class="footer-area">
+	<div class="footer-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
@@ -30,8 +30,10 @@
 					</div>
 				</div>
 			</div>
+
+			</div>
 		</div>
-	</div>
+		
 	<!-- end footer -->
 	
 	<!-- copyright -->
@@ -48,7 +50,6 @@
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
 						</ul>
 					</div>
 				</div>

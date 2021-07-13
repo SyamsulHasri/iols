@@ -29,7 +29,8 @@
 								<li><a href="/contact-us">Hubungi Kami</a></li>
 								<li><a href="#">Ahli</a>
 									<ul class="sub-menu">
-										<li><a href="#">Daftar Masuk</a></li>
+										<li><a href="{{ route('login') }}">Daftar Masuk</a></li>
+										<li><a href="{{ route('register') }}">Daftar sebagai Ahli</a></li>
 									</ul>
 								</li>
 								<li>

@@ -15,7 +15,7 @@ class CreateReferalLinkTable extends Migration
     {
         Schema::create('referal_link', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('user_id')->constrained('users');
             $table->string('referral_link');
             $table->timestamps();
         });

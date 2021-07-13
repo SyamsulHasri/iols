@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SystemController;
 
 use App\Models\Product;
 /*
@@ -59,20 +61,31 @@ Route::prefix('referral')->group(function () {
     });
 });
 
-Route::get('login', function () {
-    return view('auth.login');
-});
+// Route::get('login', function () {
+//     return view('auth.login');
+// });
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+// Route::get('/system/dashboard', [AuthController::class, 'dashboard']); 
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
+// Route::prefix('system')->group(function () {
+Route::group(['prefix' => 'system', 'middleware' => ['auth']], function(){
+    Route::get('/dashboard', [SystemController::class, 'index'])->name('system.index');
 
+    Route::get('/admin', [SystemController::class, 'adminview'])->name('admin.view');
+    Route::get('/admin/registration', [SystemController::class, 'adminregister'])->name('admin.register');
+    Route::post('/admin/registration/create', [SystemController::class, 'admincreate'])->name('admin.create');
 
-Route::prefix('system')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.dashboard');
-    });
+    Route::get('/distributor', [SystemController::class, 'distributorview'])->name('distributor.view');
+    Route::get('/distributor/registration', [SystemController::class, 'distributorregister'])->name('distributor.register');
+    Route::post('/distributor/registration/create', [SystemController::class, 'distributorcreate'])->name('distributor.create');
 });
 
 Route::get('/check', function () {
-    $price = Product::findOrFail(1)->price()->where('price_level' , 'RETAIL PRICE')->first();
-    dd($price->price);
+    return view('dashboard.test');
 });

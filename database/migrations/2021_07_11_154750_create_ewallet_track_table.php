@@ -15,10 +15,13 @@ class CreateEwalletTrackTable extends Migration
     {
         Schema::create('ewallet_track', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->decimal('cash_in', $precision = 8, $scale = 2);
-            $table->decimal('cash_out', $precision = 8, $scale = 2);
-            $table->string('cashout_approvel')->default(0);
+            $table->string('user_id')->constrained('users');
+            $table->decimal('cash_in', $precision = 8, $scale = 2)->default(0.00);
+            $table->decimal('cash_out', $precision = 8, $scale = 2)->default(0.00);
+            $table->string('cashout_request_date')->nulable();
+            $table->boolean('cashout_approval')->default(0);
+            $table->string('cashout_approval_date')->nulable();
+            $table->string('cashout_approval_maker')->nulable();
             $table->timestamps();
         });
     }
