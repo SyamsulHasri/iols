@@ -26,9 +26,13 @@ class AuthController extends Controller
      *
      * @return response()
      */
-    public function registration()
+    public function registration($refer_id)
     {
-        return view('auth.register');
+        $member = User::where('user_id',$refer_id)->first();
+        // return view('auth.register');
+        return view('auth.register', [
+            'member' => $member->member_type,
+      ]);
     }
       
     /**

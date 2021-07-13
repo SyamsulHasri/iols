@@ -31,7 +31,7 @@
 			<div class="card-body">
                 <div class="mb-3">
                     <label class="form-label" for="member_type">Level</label>
-                    <input type="text" class="form-control {{ $errors->has('member_type') ? 'error' : '' }}" id="member_type" name="member_type" value="Distributor" readonly>
+                    <input type="text" class="form-control {{ $errors->has('member_type') ? 'error' : '' }}" id="member_type" name="member_type" value="Distributors" readonly>
                         <!-- Error -->
                         @if ($errors->has('member_type'))
                             <div class="error text-danger">

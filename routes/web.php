@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SystemController;
+use App\Http\Controllers\ReferralController;
 
 use App\Models\Product;
 /*
@@ -18,6 +19,7 @@ use App\Models\Product;
 |
 */
 
+// LANDING PAGE ROUTE
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,25 +27,6 @@ Route::get('/', function () {
 Route::get('/contact-us', function () {
     return view('contact.contact');
 });
-
-Route::get('/shop', function () {
-    return view('shop.shop');
-});
-
-Route::prefix('shop')->group(function () {
-    Route::get('/shop', function () {
-        return view('shop.shop');
-    });
-    Route::get('/check-out', function () {
-        return view('shop.check-out');
-    });
-});
-
-// Route::get('cart', [ShopController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
-
 
 Route::prefix('product')->group(function () {
     Route::get('/C-Buckthorn-Oil', function () {
@@ -54,26 +37,37 @@ Route::prefix('product')->group(function () {
     });
 });
 
-
-Route::prefix('referral')->group(function () {
-    Route::get('/{refer_id}', function () {
-        return view('welcome');
+Route::prefix('/shop')->group(function () {
+    Route::get('/shop', function () {
+        return view('shop.shop');
+    });
+    Route::get('/check-out', function () {
+        return view('shop.check-out');
     });
 });
 
-// Route::get('login', function () {
-//     return view('auth.login');
-// });
+// ADD-TO-CARD ROUTE(LANDING PAGE)
+Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
-Route::get('registration', [AuthController::class, 'registration'])->name('register');
-Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-// Route::get('/system/dashboard', [AuthController::class, 'dashboard']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// Route::prefix('system')->group(function () {
+// REFERRAL LINK
+Route::prefix('referral')->group(function () {
+    Route::get('/{refer_id}', [ReferralController::class, 'index'])->name('refer.index');
+
+    // REGISTER FROM REFERRAL LINK
+    Route::get('/registration/{refer_id}', [AuthController::class, 'registration'])->name('register');
+    Route::post('/post-registration/{refer_id}', [AuthController::class, 'postRegistration'])->name('register.post'); 
+});
+
+
+
+// DASHBOARD SYSTEM
 Route::group(['prefix' => 'system', 'middleware' => ['auth']], function(){
     Route::get('/dashboard', [SystemController::class, 'index'])->name('system.index');
 
@@ -86,6 +80,7 @@ Route::group(['prefix' => 'system', 'middleware' => ['auth']], function(){
     Route::post('/distributor/registration/create', [SystemController::class, 'distributorcreate'])->name('distributor.create');
 });
 
+// CHECKING & TESTING
 Route::get('/check', function () {
     return view('dashboard.test');
 });

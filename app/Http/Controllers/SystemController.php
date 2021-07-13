@@ -159,7 +159,7 @@ class SystemController extends Controller
           $user->sponsor_id = $user_id;
           $user->leader_id = $user_id;
           $user->level = '0';
-          $user->member_type = 'Distributor';
+          $user->member_type = 'Distributors';
           $user->name = $request->name;
           $user->email = $request->email;
           $user->phone_no = $request->phone_no;

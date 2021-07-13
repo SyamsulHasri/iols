@@ -30,7 +30,9 @@
 								<li><a href="#">Ahli</a>
 									<ul class="sub-menu">
 										<li><a href="{{ route('login') }}">Daftar Masuk</a></li>
-										<li><a href="{{ route('register') }}">Daftar sebagai Ahli</a></li>
+										@if(Request::segment(1) === 'referral' && $id === true)
+										<li><a href="{{ route('register', $refer_id) }}">Daftar sebagai Ahli</a></li>
+										@endif
 									</ul>
 								</li>
 								<li>
