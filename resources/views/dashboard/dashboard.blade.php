@@ -18,30 +18,64 @@
 		</div> -->
 	</div>
 
-	<div class="card text-dark  mb-3">
-		<div class="row g-0">
-			<div class="col-md-2 text-center bg-primary">
-				<i class="fas fa-link fa-7x mt-3"></i>
-			</div>
-			<div class="col-md-10 bg-info">
-				<div class="card-body">
-					<h3 class=" font-weight-bold mt-0">Pautan Rujukan Anda</h3>
-					<div class="row">
-						<div class="col-8">
-							<div class="input-group input-group-lg">
-								<span class="input-group-text" id="inputGroup-sizing-lg">https://</span>
-								<input type="text" class="form-control form-control-lg"  value="{{$user->link->referral_link}}" id="myInput" readonly>
-							</div>
-						</div>
-						<div class="col-4">
-							<a onclick="Hello()" class="btn btn-lg btn-primary"> <i class="fas fa-copy"></i> Salin pautan</a>
-						</div>
+	@if(auth()->user()->member_type != 'Admin')
+		@if(auth()->user()->user_status === 0)
+		<!-- Alert Notification for Unactive Account -->
+		<div class="mb-3">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="false">&times;</span>
+				</button> -->
+				<div class="alert-message">
+					<h4 class="alert-heading">Akaun anda tidak Aktif!</h4>
+					@if(auth()->user()->member_type === 'Distributors')
+						<p>Aktifkan akaun anda dengan melakukan pembelian produk minimum sebanyak <b>RM 7,500.00</b> , bagi mendapatkan pautan rujukan (Referral Link) untuk pendaftaran ahli dibawah anda.</p>
+					@elseif(auth()->user()->member_type === 'Stokist')
+						<p>Aktifkan akaun anda dengan melakukan pembelian produk minimum sebanyak <b>RM 5,500.00</b> , bagi mendapatkan pautan rujukan (Referral Link) untuk pendaftaran ahli dibawah anda.</p>
+					@elseif(auth()->user()->member_type === 'Agent')
+						<p>Aktifkan akaun anda dengan melakukan pembelian produk minimum sebanyak <b>RM 2,500.00</b> , bagi mendapatkan pautan rujukan (Referral Link) untuk pendaftaran ahli dibawah anda.</p>
+					@elseif(auth()->user()->member_type === 'Mini Agent')
+						<p>Aktifkan akaun anda dengan melakukan pembelian produk minimum sebanyak <b>RM 750.00</b> , bagi mendapatkan pautan rujukan (Referral Link) untuk pendaftaran ahli dibawah anda.</p>
+					@else
+						<p>Aktifkan akaun anda dengan melakukan pembelian produk pertama, bagi mendapatkan pautan rujukan (Referral Link) untuk pendaftaran ahli dibawah anda.</p>
+					@endif
+					<hr>
+					<div class="btn-list">
+						<a  class="btn btn-lg btn-warning"> <i class="fas fa-shopping-cart mr-2"></i> Buat Pembelian</a>
 					</div>
-					<p class="card-text"><small class="text-white">Gunakan pautan rujukan anda untuk mendaftar ahli bagi mendapatkan bonus-bonus yang lumayan.</small></p>
 				</div>
 			</div>
 		</div>
-	</div>
+		<!-- Alert Notification for Unactive Account -->
+		@else
+		<!-- Refferal Link layout -->
+		<div class="card text-dark  mb-3">
+			<div class="row g-0">
+				<div class="col-md-2 text-center bg-primary">
+					<i class="fas fa-link fa-7x mt-3"></i>
+				</div>
+				<div class="col-md-10 bg-info">
+					<div class="card-body">
+						<h3 class=" font-weight-bold mt-0">Pautan Rujukan Anda</h3>
+						<div class="row">
+							<div class="col-8">
+								<div class="input-group input-group-lg">
+									<span class="input-group-text" id="inputGroup-sizing-lg">https://</span>
+									<input type="text" class="form-control form-control-lg"  value="{{$user->link->referral_link}}" id="myInput" readonly>
+								</div>
+							</div>
+							<div class="col-4">
+								<a onclick="Hello()" class="btn btn-lg btn-primary"> <i class="fas fa-copy"></i> Salin pautan</a>
+							</div>
+						</div>
+						<p class="card-text"><small class="text-white">Gunakan pautan rujukan anda untuk mendaftar ahli bagi mendapatkan bonus-bonus yang lumayan.</small></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Refferal Link layout -->
+		@endif
+	@endif
 
 
 	<!-- <div class="row">

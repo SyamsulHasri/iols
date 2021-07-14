@@ -202,4 +202,19 @@ class SystemController extends Controller
 
           return redirect()->route("distributor.view")->with('success', 'Proses Penambahan Pengedar Berjaya');
     }
+
+        /**
+    * Write code on Method
+    *
+    * @return response()
+    */
+     public function profile()
+     {
+     
+          return view('dashboard.profile.index', [
+               'user' => User::find(Auth()->user()->id),
+          ]);
+          
+
+     }
 }

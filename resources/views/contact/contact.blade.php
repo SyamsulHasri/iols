@@ -39,7 +39,7 @@
 							</p>
 							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
 							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" value="Submit"></p>
+							<p><input type="submit" value="Hantar"></p>
 						</form>
 					</div>
 				</div>

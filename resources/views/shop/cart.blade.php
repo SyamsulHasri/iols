@@ -3,7 +3,7 @@
 @section('content')
 
 	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section shop-bg">
+	<div class="breadcrumb-section2 shop-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">

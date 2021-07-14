@@ -31,7 +31,7 @@ class ShopController extends Controller
        }
           
        session()->put('cart', $cart);
-       return redirect()->back()->with('success', 'Product added to cart successfully!');
+       return redirect()->back()->with('success', 'Produk berjaya ditambahkan ke troli!');
    }
   
    /**

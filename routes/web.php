@@ -90,10 +90,11 @@ Route::prefix('referral')->group(function () {
 });
 
 
-
 // DASHBOARD SYSTEM
 Route::group(['prefix' => 'system', 'middleware' => ['auth']], function(){
     Route::get('/dashboard', [SystemController::class, 'index'])->name('system.index');
+
+    Route::get('/profile', [SystemController::class, 'profile'])->name('profile.view');
 
     Route::get('/admin', [SystemController::class, 'adminview'])->name('admin.view');
     Route::get('/admin/registration', [SystemController::class, 'adminregister'])->name('admin.register');
