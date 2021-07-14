@@ -18,7 +18,7 @@
 	<!-- end breadcrumb section -->
 
     <!-- cart -->
-	<div class="cart-section mt-150 mb-150">
+	<div class="cart-section mt-100 mb-150">
 		<div class="container">
 
         @if(session('success'))
@@ -73,7 +73,7 @@
                     <tr>
                         <td colspan="5" class="text-right">
                             <a href="{{ url('/shop/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Teruskan Membeli</a>
-                            <button class="btn btn-success">Bayar Sekrang</button>
+                            <a href="{{ url('/shop/payment') }}" class="btn btn-success">Bayar Sekarang</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -113,7 +113,7 @@
    
         var ele = $(this);
    
-        if(confirm("Are you sure want to remove?")) {
+        if(confirm("Adakah anda pasti mahu memadamkan produk ini?")) {
             $.ajax({
                 url: '{{ route('remove.from.cart') }}',
                 method: "DELETE",
@@ -127,6 +127,12 @@
             });
         }
     });
+
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+	}, 2000);
    
 </script>
 @endsection

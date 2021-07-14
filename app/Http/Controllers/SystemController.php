@@ -13,6 +13,7 @@ use App\Models\UserAddress;
 use App\Models\BankDetail;
 use App\Models\Ewallet;
 use App\Models\ReferralLink;
+use App\Models\Product;
 
 class SystemController extends Controller
 {
@@ -203,18 +204,95 @@ class SystemController extends Controller
           return redirect()->route("distributor.view")->with('success', 'Proses Penambahan Pengedar Berjaya');
     }
 
-        /**
+     /**
     * Write code on Method
     *
     * @return response()
     */
      public function profile()
      {
-     
           return view('dashboard.profile.index', [
                'user' => User::find(Auth()->user()->id),
           ]);
           
-
      }
+
+     /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+     public function shop()
+     {
+          return view('dashboard.shop.index', [
+               'user' => User::find(Auth()->user()->id),
+               'products' => Product::all(),
+               'price' =>  Product::with('price_level')->first(),
+          ]);
+          
+     }
+
+     // Add-to-cart
+          /**
+           * Write code on Method
+          *
+          * @return response()
+          */
+          public function addToCart($id)
+          {
+
+               $user = User::where('user_id',Auth()->user()->user_id)->first();
+               $product = Product::findOrFail($id);
+               $price = Product::findOrFail($id)->price()->where('price_level' , $user->member_type)->first();
+
+               $systemcart = session()->get('systemcart', []);
+          
+               if(isset($systemcart[$id])) {
+                    $systemcart[$id]['quantity']++;
+               } else {
+                    $systemcart[$id] = [
+                         "name" => $product->name,
+                         "quantity" => 1,
+                         "price" => $price->price,
+                         "image" => $product->image
+                    ];
+               }
+                    
+               session()->put('systemcart', $systemcart);
+               return redirect()->back()->with('success', 'Produk berjaya ditambahkan ke troli!');
+          
+          }
+          
+          /**
+           * Write code on Method
+          *
+          * @return response()
+          */
+          public function update(Request $request)
+          {
+               if($request->id && $request->quantity){
+                    $systemcart = session()->get('systemcart');
+                    $systemcart[$request->id]["quantity"] = $request->quantity;
+                    session()->put('systemcart', $systemcart);
+                    session()->flash('success', 'Troli berjaya dikemas kini');
+               }
+          }
+          
+          /**
+           * Write code on Method
+          *
+          * @return response()
+          */
+          public function remove(Request $request)
+          {
+               if($request->id) {
+                    $systemcart = session()->get('systemcart');
+                    if(isset($systemcart[$request->id])) {
+                         unset($systemcart[$request->id]);
+                         session()->put('systemcart', $systemcart);
+                    }
+                    session()->flash('success', 'Product removed successfully');
+               }
+          }
+          //add-to-cart
 }

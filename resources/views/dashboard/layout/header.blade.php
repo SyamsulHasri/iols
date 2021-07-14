@@ -50,7 +50,7 @@
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
                     <div class="position-relative">
                         <i class="align-middle" data-feather="shopping-bag"></i>
-                        <span class="indicator">0</span>
+                        <span class="indicator">{{ count((array) session('systemcart')) }}</span>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
@@ -58,21 +58,42 @@
                         Ringkasan Pembelian
                     </div>
                     <div class="list-group">
+                    @if(session('systemcart'))
+                        @foreach(session('systemcart') as $id => $details)
                         <a href="#" class="list-group-item">
                             <div class="row g-0 align-items-center">
                                 <div class="col-2">
-                                    <i class="text-danger" data-feather="alert-circle"></i>
+                                    <i class="text-success" data-feather="shopping-cart"></i>
                                 </div>
                                 <div class="col-10">
-                                    <div class="text-dark">Update completed</div>
-                                    <div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
-                                    <div class="text-muted small mt-1">30m ago</div>
+                                    <div class="text-dark">{{ $details['name'] }}</div>
+                                    <div class="text-dark small mt-1"> RM {{ $details['price'] }}</div>
+                                    <div class="text-dark small mt-1">Quantity: {{ $details['quantity'] }}</div>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
+                    @endif
+                    <a href="#" class="list-group-item">
+                        @php $total = 0 @endphp
+                        @foreach((array) session('systemcart') as $id => $details)
+                            @php $total += $details['price'] * $details['quantity'] @endphp
+                        @endforeach
+                            <div class="row g-0 align-items-center">
+                                <div class="col-2">
+                                    <i class="text-info" data-feather="dollar-sign"></i>
+                                </div>
+                                <div class="col-10">
+                                    <div class="text-dark">
+                                        <h3 class="font-weight-bold">Jumlah :  RM {{ $total }}</h3>    
+                                   </div>
                                 </div>
                             </div>
                         </a>
                     </div>
+
                     <div class="dropdown-menu-footer">
-                        <a href="#" class="text-muted">Show all notifications</a>
+                        <a href="#" class="text-muted">Lihat semua</a>
                     </div>
                 </div>
             </li>

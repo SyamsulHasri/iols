@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\User;
 
 class ShopController extends Controller
 {
@@ -14,24 +16,50 @@ class ShopController extends Controller
     */
    public function addToCart($id)
    {
-       $product = Product::findOrFail($id);
-       $price = Product::findOrFail($id)->price()->where('price_level' , 'RETAIL PRICE')->first();
+        if(Auth::check()){
 
-       $cart = session()->get('cart', []);
-  
-       if(isset($cart[$id])) {
-           $cart[$id]['quantity']++;
-       } else {
-           $cart[$id] = [
-               "name" => $product->name,
-               "quantity" => 1,
-               "price" => $price->price,
-               "image" => $product->image
-           ];
-       }
-          
-       session()->put('cart', $cart);
-       return redirect()->back()->with('success', 'Produk berjaya ditambahkan ke troli!');
+            $user = User::where('user_id',Auth()->user()->user_id)->first();
+            $product = Product::findOrFail($id);
+            $price = Product::findOrFail($id)->price()->where('price_level' , $user->member_type)->first();
+
+            $cart = session()->get('cart', []);
+        
+            if(isset($cart[$id])) {
+                $cart[$id]['quantity']++;
+            } else {
+                $cart[$id] = [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $price->price,
+                    "image" => $product->image
+                ];
+            }
+                
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Produk berjaya ditambahkan ke troli!');
+
+        }else{
+            $product = Product::findOrFail($id);
+            $price = Product::findOrFail($id)->price()->where('price_level' , 'RETAIL PRICE')->first();
+     
+            $cart = session()->get('cart', []);
+       
+            if(isset($cart[$id])) {
+                $cart[$id]['quantity']++;
+            } else {
+                $cart[$id] = [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $price->price,
+                    "image" => $product->image
+                ];
+            }
+               
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Produk berjaya ditambahkan ke troli!');
+            
+        }
+   
    }
   
    /**
@@ -45,7 +73,7 @@ class ShopController extends Controller
            $cart = session()->get('cart');
            $cart[$request->id]["quantity"] = $request->quantity;
            session()->put('cart', $cart);
-           session()->flash('success', 'Cart updated successfully');
+           session()->flash('success', 'Troli berjaya dikemas kini');
        }
    }
   

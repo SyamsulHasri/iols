@@ -44,13 +44,18 @@ Route::prefix('/shop')->group(function () {
     Route::get('/cart', function () {
         return view('shop.cart');
     });
+    Route::get('/payment', function () {
+        return view('shop.paynow');
+    });
 });
+// LANDING PAGE ROUTE
 
 // ADD-TO-CARD ROUTE(LANDING PAGE)
 Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
 
+//Login 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -95,6 +100,12 @@ Route::group(['prefix' => 'system', 'middleware' => ['auth']], function(){
     Route::get('/dashboard', [SystemController::class, 'index'])->name('system.index');
 
     Route::get('/profile', [SystemController::class, 'profile'])->name('profile.view');
+
+    Route::get('/shop', [SystemController::class, 'shop'])->name('shop.view');
+    // ADD-TO-CARD ROUTE(SYSTEM)
+    Route::get('add-to-cart/{id}', [SystemController::class, 'addToCart'])->name('system.add.to.cart');
+    Route::patch('update-cart', [SystemController::class, 'update'])->name('system.update.cart');
+    Route::delete('remove-from-cart', [SystemController::class, 'remove'])->name('system.remove.from.cart');
 
     Route::get('/admin', [SystemController::class, 'adminview'])->name('admin.view');
     Route::get('/admin/registration', [SystemController::class, 'adminregister'])->name('admin.register');

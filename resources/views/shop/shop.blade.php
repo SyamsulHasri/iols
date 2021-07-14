@@ -18,7 +18,7 @@
 	<!-- end breadcrumb section -->
 
 	<!-- products -->
-	<div class="product-section mt-150 mb-150">
+	<div class="product-section mt-100 mb-150">
 		<div class="container">
 			
 		@if(session('success'))
@@ -97,7 +97,7 @@
    
         var ele = $(this);
    
-        if(confirm("Are you sure want to remove?")) {
+        if(confirm("Adakah anda pasti mahu memadamkan produk ini?")) {
             $.ajax({
                 url: '{{ route('remove.from.cart') }}',
                 method: "DELETE",
@@ -116,7 +116,7 @@
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 
     });
-	}, 4000);
+	}, 2000);
    
 </script>
 @endsection

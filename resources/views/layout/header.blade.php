@@ -103,7 +103,7 @@
 											<hr>
 										</li>
 										<li>
-										<a href="/shop/cart" class="btn btn-primary text-white btn-block">View all</a>
+										<a href="/shop/cart" class="btn btn-primary text-white btn-block">Lihat semua</a>
 										</li>
 									</ul>
 								</li>

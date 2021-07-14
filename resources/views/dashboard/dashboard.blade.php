@@ -41,7 +41,7 @@
 					@endif
 					<hr>
 					<div class="btn-list">
-						<a  class="btn btn-lg btn-warning"> <i class="fas fa-shopping-cart mr-2"></i> Buat Pembelian</a>
+						<a href="{{route('shop.view')}}" class="btn btn-lg btn-warning"> <i class="fas fa-shopping-cart mr-2"></i> Buat Pembelian</a>
 					</div>
 				</div>
 			</div>
