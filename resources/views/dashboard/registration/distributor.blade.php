@@ -46,6 +46,8 @@
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Email</th>
+                            <th scope="col">No. Telefon</th>
+                            <th scope="col">Level</th>
                             <th scope="col">Tindakan</th>
                         </tr>
                     </thead>
@@ -55,6 +57,8 @@
                             <th scope="row">{{$loop->iteration}}</th>
                             <td>{{$distributor->name}}</td>
                             <td>{{$distributor->email}}</td>
+                            <td>{{$distributor->phone_no}}</td>
+                            <td>{{$distributor->member_type}}</td>
                             <td class="table-action">
                                 <a href="#"><i class="align-middle" data-feather="edit-2"></i></a>
                                 <a href="#"><i class="align-middle" data-feather="trash"></i></a>

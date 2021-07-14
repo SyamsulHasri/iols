@@ -25,7 +25,10 @@ class SystemController extends Controller
    public function index()
    {
         if(Auth::check()){
-            return view('dashboard.dashboard');
+          //   return view('dashboard.dashboard');
+               return view('dashboard.dashboard', [
+               'user' => User::find(Auth()->user()->id),
+         ]);
         }
   
         return redirect("login")->withSuccess('Opps! You do not have access');
@@ -86,9 +89,10 @@ class SystemController extends Controller
           $user->email = $request->email;
           $user->phone_no = $request->phone_no;
           $user->password =  Hash::make($request->password);
-          $user->first_purchase = 1;
-          $user->first_purchase_amount ='0.00';
+          $user->register_date = Carbon::now();
           $user->user_status = 1;
+          $user->activation_date = Carbon::now();
+          $user->first_purchase_amount ='0.00';
           $user->save();
 
           return redirect()->route("admin.view")->with('success', 'Proses Penambahan Pentadbir Berjaya');
@@ -164,9 +168,10 @@ class SystemController extends Controller
           $user->email = $request->email;
           $user->phone_no = $request->phone_no;
           $user->password =  Hash::make($request->password);
-          $user->first_purchase = 0;
-          $user->first_purchase_amount ='0.00';
+          $user->register_date = Carbon::now();
           $user->user_status = 0;
+          $user->activation_date = Carbon::now();
+          $user->first_purchase_amount ='0.00';
           $user->save();
 
           $address = new UserAddress();

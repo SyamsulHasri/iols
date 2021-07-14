@@ -25,9 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('phone_no');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('first_purchase')->default(0);
-            $table->string('first_purchase_amount');
+            $table->date('register_date');
             $table->boolean('user_status')->default(0);
+            $table->date('activation_date')->nullable();
+            $table->string('first_purchase_amount');
             $table->rememberToken();
             $table->timestamps();
         });

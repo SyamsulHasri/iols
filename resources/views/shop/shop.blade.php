@@ -20,7 +20,12 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-
+			
+		@if(session('success'))
+			<div class="alert alert-success">
+			{{ session('success') }}
+			</div> 
+		@endif
 
 			<div class="row product-lists">
 				<div class="col-lg-6 col-md-6 text-center strawberry">

@@ -41,8 +41,8 @@ Route::prefix('/shop')->group(function () {
     Route::get('/shop', function () {
         return view('shop.shop');
     });
-    Route::get('/check-out', function () {
-        return view('shop.check-out');
+    Route::get('/cart', function () {
+        return view('shop.cart');
     });
 });
 
@@ -63,6 +63,30 @@ Route::prefix('referral')->group(function () {
     // REGISTER FROM REFERRAL LINK
     Route::get('/registration/{refer_id}', [AuthController::class, 'registration'])->name('register');
     Route::post('/post-registration/{refer_id}', [AuthController::class, 'postRegistration'])->name('register.post'); 
+
+    Route::get('/contact-us/{refer_id}', [ReferralController::class, 'contact'])->name('refer.contact');
+    
+    Route::prefix('product')->group(function () {
+        Route::get('/C-Buckthorn-Oil/{refer_id}', [ReferralController::class, 'buckthron'])->name('refer.buckthron');
+        // Route::get('/C-Buckthorn-Oil/{refer_id}', function () {
+        //     return view('product.buckthronoil');
+        // });
+        Route::get('/Fair-Lady-Skincare-Set/{refer_id}', [ReferralController::class, 'flskincare'])->name('refer.flskincare');
+        // Route::get('/Fair-Lady-Skincare-Set/{refer_id}', function () {
+        //     return view('product.flskincare');
+        // });
+    });
+    
+    Route::prefix('/shop')->group(function () {
+        Route::get('/shop/{refer_id}', [ReferralController::class, 'shop'])->name('refer.shop');
+        // Route::get('/shop/{refer_id}', function () {
+        //     return view('shop.shop');
+        // });
+        Route::get('/cart/{refer_id}', [ReferralController::class, 'cart'])->name('refer.cart');
+        // Route::get('/cart/{refer_id}', function () {
+        //     return view('shop.cart');
+        // });
+    });
 });
 
 

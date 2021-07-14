@@ -15,18 +15,53 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="/">Laman Utama</a>
+								<li class="current-list-item">
+									@if(Request::segment(1) === 'referral' && $id === true)
+										<a href="/referral/{{$refer_id}}">Laman Utama</a>
+									@else
+										<a href="/">Laman Utama</a>
+									@endif
 								</li>
-								<li><a href="/#about">Tentang Kami</a></li>
+								<li>
+									@if(Request::segment(1) === 'referral' && $id === true)
+										<a href="/referral/{{$refer_id}}/#about">Tentang Kami</a>
+									@else
+										<a href="/#about">Tentang Kami</a>
+									@endif
+								</li>
 								<li><a href="#">Produk</a>
 									<ul class="sub-menu">
-										<li><a href="/product/C-Buckthorn-Oil">C-Buckthorn Oil</a></li>
-										<li><a href="/product/Fair-Lady-Skincare-Set">Fair Lady Skincare Set</a></li>
+										<li>
+											@if(Request::segment(1) === 'referral' && $id === true)
+												<a href="/referral/product/C-Buckthorn-Oil/{{$refer_id}}">C-Buckthorn Oil</a>
+											@else
+												<a href="/product/C-Buckthorn-Oil">C-Buckthorn Oil</a>
+											@endif
+										</li>
+										<li>
+											@if(Request::segment(1) === 'referral' && $id === true)
+												<a href="/referral/product/Fair-Lady-Skincare-Set/{{$refer_id}}">Fair Lady Skincare Set</a>
+											@else
+												<a href="/product/Fair-Lady-Skincare-Set">Fair Lady Skincare Set</a>
+											@endif
+										</li>
 										<!-- <li><a href="#">Stemcell Double Action Spray</a></li> -->
 									</ul>
 								</li>
-								<li><a href="/shop/shop">Beli Sekarang</a></li>
-								<li><a href="/contact-us">Hubungi Kami</a></li>
+								<li>
+									@if(Request::segment(1) === 'referral' && $id === true)
+										<a href="/referral/shop/shop/{{$refer_id}}">Beli Sekarang</a>
+										@else
+										<a href="/shop/shop">Beli Sekarang</a>
+									@endif
+								</li>
+								<li>
+									@if(Request::segment(1) === 'referral' && $id === true)
+										<a href="/referral/contact-us/{{$refer_id}}">Hubungi Kami</a>
+										@else
+										<a href="/contact-us">Hubungi Kami</a>
+									@endif		
+								</li>
 								<li><a href="#">Ahli</a>
 									<ul class="sub-menu">
 										<li><a href="{{ route('login') }}">Daftar Masuk</a></li>
@@ -68,7 +103,7 @@
 											<hr>
 										</li>
 										<li>
-										<a href="/shop/check-out" class="btn btn-primary btn-block">View all</a>
+										<a href="/shop/cart" class="btn btn-primary text-white btn-block">View all</a>
 										</li>
 									</ul>
 								</li>

@@ -49,4 +49,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function link()
+    {
+        return $this->hasOne(ReferralLink::class, 'user_id', 'user_id');
+    }
 }

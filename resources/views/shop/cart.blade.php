@@ -20,6 +20,13 @@
     <!-- cart -->
 	<div class="cart-section mt-150 mb-150">
 		<div class="container">
+
+        @if(session('success'))
+            <div class="alert alert-success">
+            {{ session('success') }}
+            </div> 
+        @endif
+        
             <div class="table-responsive">
 
             </div>
@@ -65,8 +72,8 @@
                     </tr>
                     <tr>
                         <td colspan="5" class="text-right">
-                            <a href="{{ url('/shop/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-                            <button class="btn btn-success">Checkout</button>
+                            <a href="{{ url('/shop/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Teruskan Membeli</a>
+                            <button class="btn btn-success">Bayar Sekrang</button>
                         </td>
                     </tr>
                 </tfoot>

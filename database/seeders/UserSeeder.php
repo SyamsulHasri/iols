@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -25,9 +26,13 @@ class UserSeeder extends Seeder
             'email' => 'it@iols.com.my',
             'phone_no' => '0176041406',
             'password' => Hash::make('123456'),
-            'first_purchase' => 1,
-            'first_purchase_amount' => '0.00',
+            'register_date' => Carbon::now(),
             'user_status' => 1,
+            'activation_date' => Carbon::now(),
+            'first_purchase_amount' => '0.00',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            
         ]);
 
         DB::table('users')->insert([
@@ -40,9 +45,13 @@ class UserSeeder extends Seeder
             'email' => 'admin@iols.com.my',
             'phone_no' => '0123456789',
             'password' => Hash::make('123456'),
-            'first_purchase' => 1,
-            'first_purchase_amount' => '0.00',
+            'register_date' => Carbon::now(),
             'user_status' => 1,
+            'activation_date' => Carbon::now(),
+            'first_purchase_amount' => '0.00',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            
         ]);
     }
 }
