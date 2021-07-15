@@ -90,7 +90,7 @@ class ShopController extends Controller
                unset($cart[$request->id]);
                session()->put('cart', $cart);
            }
-           session()->flash('success', 'Product removed successfully');
+           session()->flash('success', 'Produk berjaya dikeluarkan dari troli');
        }
    }
 }

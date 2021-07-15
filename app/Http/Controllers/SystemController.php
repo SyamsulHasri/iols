@@ -291,7 +291,7 @@ class SystemController extends Controller
                          unset($systemcart[$request->id]);
                          session()->put('systemcart', $systemcart);
                     }
-                    session()->flash('success', 'Product removed successfully');
+                    session()->flash('success', 'Produk berjaya dikeluarkan dari troli');
                }
           }
           //add-to-cart
