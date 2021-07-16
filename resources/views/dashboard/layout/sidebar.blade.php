@@ -22,14 +22,14 @@
                     <i class="align-middle fas fa-user-cog"></i> <span class="align-middle">Profil</span>
                 </a>
             </li>
-
-            <li class="sidebar-item {{ Request::segment(2) === 'shop' ? 'active' : null }}">
-                <a class="sidebar-link" href="{{route('shop.view')}}">
-                    <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Beli Produk</span>
-                </a>
-            </li>
-            
             @if(auth()->user()->member_type != 'Admin')
+                <li class="sidebar-item {{ Request::segment(2) === 'shop' ? 'active' : null }}">
+                    <a class="sidebar-link" href="{{route('shop.view')}}">
+                        <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Beli Produk</span>
+                    </a>
+                </li>
+            
+            
                 <li class="sidebar-item {{ Request::segment(1) === '/' ? 'active' : null }}">
                     <a class="sidebar-link" href="#">
                         <i class="align-middle fas fa-wallet"></i> <span class="align-middle">E-Wallet</span>
@@ -55,6 +55,11 @@
                         <li class="sidebar-item"><a class="sidebar-link" href="{{route('admin.view')}}">Senarai Pentadbir</a></li>
                         <li class="sidebar-item"><a class="sidebar-link" href="{{route('distributor.view')}}">Senarai Pengedar</a></li>
                     </ul>
+                </li>
+                <li class="sidebar-item ">
+                    <a class="sidebar-link" href="#">
+                        <i class="align-middle fas fa-dolly-flatbed" ></i> <span class="align-middle">Pesanan Produk</span>
+                    </a>
                 </li>
                 <li class="sidebar-item ">
                     <a class="sidebar-link" href="#">

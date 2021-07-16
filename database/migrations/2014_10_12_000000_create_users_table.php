@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('sponsor_id'); //direct sponsor id
             $table->string('leader_id'); //leader id distributor lvl 0
-            $table->string('level');
+            $table->integer('level');
             $table->string('member_type');
             $table->string('email')->unique();
             $table->string('phone_no');

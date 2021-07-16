@@ -32,7 +32,7 @@
 							</p>
 						</div>
 
-                        <form method="post" action="{{ route('distributor.create') }}">
+                        <form method="post" action="{{ route('register.post', [$refer_id]) }}">
                         <!-- CROSS Site Request Forgery Protection -->
                         @csrf
 

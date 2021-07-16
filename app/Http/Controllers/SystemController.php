@@ -84,7 +84,7 @@ class SystemController extends Controller
           $user->user_id = $user_id;
           $user->sponsor_id = 'Admin';
           $user->leader_id = 'Admin';
-          $user->level = 'Admin';
+          $user->level = 1;
           $user->member_type = 'Admin';
           $user->name = $request->name;
           $user->email = $request->email;
@@ -171,7 +171,6 @@ class SystemController extends Controller
           $user->password =  Hash::make($request->password);
           $user->register_date = Carbon::now();
           $user->user_status = 0;
-          $user->activation_date = Carbon::now();
           $user->first_purchase_amount ='0.00';
           $user->save();
 
